@@ -470,9 +470,39 @@ body {
 /* Mobile */
 
 @media (max-width: 480px) {
-  .invite-card,
+  .page {
+    padding: 16px 0;
+  }
+
+  .invite-card {
+    width: 100%;
+    max-height: calc(100vh - 40px);
+    border-radius: 16px 16px 0 0;
+    padding: 16px 0 18px;
+  }
+
+  .card-title {
+    font-size: 32px;
+    margin-bottom: 90px;
+  }
+
   .envelope {
-    transform: scale(0.9);
+    width: 310px;
+    height: 200px;
+    animation: envelopeFloat 2.25s ease-in-out infinite;
+  }
+
+  .letter {
+    width: 280px;
+    height: 175px;
+  }
+
+  .photo-frame {
+    margin-top: 70px;
+  }
+
+  .photo-frame-img {
+    max-height: 220px;
   }
 }
 
