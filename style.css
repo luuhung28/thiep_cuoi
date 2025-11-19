@@ -470,42 +470,68 @@ body {
 /* Mobile */
 
 @media (max-width: 480px) {
-  .page {
-    padding: 16px 0;
-  }
-
-  .invite-card {
-    width: 100%;
-    max-height: calc(100vh - 40px);
-    border-radius: 16px 16px 0 0;
-    padding: 16px 0 18px;
-  }
 
   .card-title {
-    font-size: 32px;
-    margin-bottom: 90px;
-  }
-
-  .envelope {
-    width: 310px;
-    height: 200px;
-    animation: envelopeFloat 2.25s ease-in-out infinite;
+    font-size: 30px;
+    margin-bottom: 85px;
   }
 
   .letter {
-    width: 280px;
-    height: 175px;
+    width: 260px;
+    height: 165px;
+  }
+
+  .letter-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  .letter-names {
+    font-size: 24px;        /* giảm từ 28px */
+    margin-bottom: 4px;
+  }
+
+  .letter-date {
+    font-size: 13px;        /* giảm từ 16px */
+    letter-spacing: 0.18em;
+  }
+
+  .letter-invite {
+    font-size: 11px;
+  }
+
+  .letter-guest {
+    font-size: 11px;
+  }
+
+  .letter-guest-highlight {
+    font-size: 18px;        /* giảm từ 22px */
   }
 
   .photo-frame {
-    margin-top: 70px;
+    margin-top: 60px;
   }
 
   .photo-frame-img {
-    max-height: 220px;
+    max-height: 200px;     /* giảm thêm cho vừa màn nhỏ */
+  }
+
+  /* Hoa trang trí thu nhỏ */
+  .card-flower {
+    width: 90px;
+    height: 120px;
+  }
+
+  .card-flower-left {
+    top: 35px;
+    left: -10px;
+  }
+
+  .card-flower-right {
+    top: 20px;
+    right: -14px;
   }
 }
-
 @keyframes envelopeFloat {
   0% {
     transform: translateY(8px); /* xuống nhẹ thôi */
