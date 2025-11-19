@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Thiệp cưới của chúng mình</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Font sang trọng -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #ffe6e6 0, #ffffff 40%, #f5f5f5 100%);
+      color: #3a3a3a;
+    }
+
+    .invitation-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      padding: 16px;
+    }
+
+    /* Trang trí nhẹ cho background */
+    .bg-circle {
+      position: fixed;
+      border-radius: 50%;
+      opacity: 0.4;
+      filter: blur(2px);
+      z-index: -1;
+    }
+
+    .bg-circle.red {
+      width: 420px;
+      height: 420px;
+      background: #b71c1c;
+      top: -160px;
+      right: -100px;
+    }
+
+    .bg-circle.pale {
+      width: 360px;
+      height: 360px;
+      background: #ffebee;
+      bottom: -140px;
+      left: -80px;
+    }
+
+    /* Petal nhẹ để sang hơn */
+    .petal {
+      position: fixed;
+      width: 14px;
+      height: 24px;
+      border-radius: 50% 50% 40% 40%;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+      opacity: 0.5;
+      z-index: -1;
+      animation: floatDown 18s linear infinite;
+    }
+
+    .petal:nth-child(1) { left: 12%; animation-delay: 0s; }
+    .petal:nth-child(2) { left: 40%; animation-delay: 3s; }
+    .petal:nth-child(3) { left: 68%; animation-delay: 6s; }
+    .petal:nth-child(4) { left: 85%; animation-delay: 9s; }
+
+    @keyframes floatDown {
+      0%   { transform: translateY(-120vh) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.7; }
+      80%  { opacity: 0.7; }
+      100% { transform: translateY(120vh) rotate(180deg); opacity: 0; }
+    }
+
+    /* Lớp cover (bì thư / splash) */
+    .cover {
+      position: relative;
+      background: linear-gradient(145deg, #b71c1c, #8b1010);
+      border-radius: 22px;
+      padding: 26px 20px 30px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+      text-align: center;
+      color: #fff;
+      cursor: pointer;
+      overflow: hidden;
+      transform-origin: center center;
+      animation: coverIdle 3s ease-in-out infinite;
+      transition:
+        opacity 0.8s ease,
+        transform 0.9s ease,
+        box-shadow 0.8s ease;
+      z-index: 2;
+    }
+
+    @keyframes coverIdle {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(-4px) scale(1.01); }
+    }
+
+    .cover::before {
+      content: "";
+      position: absolute;
+      inset: 15px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.4);
+      pointer-events: none;
+    }
+
+    .cover::after {
+      content: "";
+      position: absolute;
+      width: 140%;
+      height: 80px;
+      top: -40px;
+      left: -20%;
+      background: linear-gradient(90deg, rgba(255,255,255,0.45), transparent, rgba(255,255,255,0.35));
+      transform: rotate(8deg);
+      opacity: 0.9;
+    }
+
+    .cover-logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 6px auto 16px;
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
+      letter-spacing: 0.06em;
+    }
+
+    .cover-subtitle {
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .cover-title {
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
+      margin: 10px 0 4px;
+      letter-spacing: 0.06em;
+    }
+
+    .cover-names {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .cover-date {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 18px;
+    }
+
+    .cover-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.8);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(4px);
+      transition:
+        background 0.3s ease,
+        transform 0.2s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .cover:hover .cover-cta {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .cover-cta-icon {
+      font-size: 16px;
+    }
+
+    .cover-hint {
+      margin-top: 10px;
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
+    /* Card nội dung chính (thiệp) */
+    .card {
+      position: relative;
+      background: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.22);
+      padding: 22px 20px 26px;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(183,28,28,0.18);
+      pointer-events: none;
+    }
+
+    .card-header {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .photo-frame {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 3px solid #b71c1c;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      margin-bottom: 14px;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      max-height: 260px;
+    }
+
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.45), transparent 60%);
+      pointer-events: none;
+    }
+
+    .photo-label {
+      position: absolute;
+      bottom: 10px;
+      right: 14px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.88);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #b71c1c;
+      font-weight: 600;
+    }
+
+    .card-subtitle {
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #b71c1c;
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #4b1b1b;
+    }
+
+    .guest-line {
+      font-size: 15px;
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    .guest-line span {
+      font-weight: 600;
+      color: #b71c1c;
+    }
+
+    .card-line {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+
+    .names-line {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      margin: 10px 0 4px;
+      color: #b71c1c;
+    }
+
+    .ampersand {
+      font-size: 18px;
+      color: #c62828;
+      padding: 0 4px;
+    }
+
+    .divider {
+      width: 52px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #b71c1c, transparent);
+      margin: 12px auto 10px;
+    }
+
+    .info-block {
+      margin-top: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .info-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #b71c1c;
+      margin-bottom: 4px;
+    }
+
+    .info-highlight {
+      font-weight: 600;
+      color: #4b1b1b;
+    }
+
+    .location {
+      margin-top: 4px;
+    }
+
+    .note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: #777;
+      line-height: 1.5;
+      padding: 0 8px;
+    }
+
+    .footer-line {
+      margin-top: 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #aaa;
+    }
+
+    /* Ẩn card lúc đầu, hiện sau khi mở cover */
+    .card-content {
+      opacity: 0;
+      transform: translateY(40px) scale(0.96);
+      pointer-events: none;
+      transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+    }
+
+    /* Khi body có class .opened, cover biến mất, card hiện ra */
+    body.opened .cover {
+      opacity: 0;
+      transform: translateY(-80px) scale(0.8) rotateX(16deg);
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+      pointer-events: none;
+    }
+
+    body.opened .card-content {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+      transition-delay: 0.1s;
+    }
+
+    .guestbook {
+      margin-top: 18px;
+      padding: 14px 10px 6px;
+      border-top: 1px dashed rgba(183, 28, 28, 0.3);
+    }
+
+    .guestbook-title {
+      font-family: "Playfair Display", serif;
+      font-size: 18px;
+      color: #b71c1c;
+      margin-bottom: 8px;
+    }
+
+    .guestbook-desc {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .guestbook-form {
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .guestbook-field {
+      margin-bottom: 8px;
+    }
+
+    .guestbook-label {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 3px;
+      color: #555;
+    }
+
+    .guestbook-input,
+    .guestbook-textarea {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      padding: 8px 10px;
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .guestbook-input:focus,
+    .guestbook-textarea:focus {
+      border-color: #b71c1c;
+      box-shadow: 0 0 0 1px rgba(183, 28, 28, 0.12);
+    }
+
+    .guestbook-textarea {
+      min-height: 72px;
+      resize: vertical;
+    }
+
+    .guestbook-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 4px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: none;
+      background: #b71c1c;
+      color: #fff;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .guestbook-submit:hover {
+      background: #8b1010;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+    }
+
+    .guestbook-submit:active {
+      transform: translateY(0);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+    }
+
+    .guestbook-small {
+      font-size: 11px;
+      color: #999;
+      margin-top: 4px;
+    }
+
+    .guestbook-hidden {
+      display: none;
+    }
+
+
+    /* Responsive nhỏ */
+    @media (max-width: 480px) {
+      .invitation-wrapper {
+        padding: 10px;
+      }
+      .cover, .card {
+        padding: 20px 16px 22px;
+        border-radius: 18px;
+      }
+      .card::before {
+        inset: 10px;
+        border-radius: 14px;
+      }
+      .photo-frame {
+        border-radius: 14px;
+      }
+      .photo-frame img {
+        max-height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Trang trí nền -->
+  <div class="bg-circle red"></div>
+  <div class="bg-circle pale"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+
+  <div class="invitation-wrapper">
+
+    <!-- Cover / Bì thư (click để mở) -->
+    <div class="cover" id="cover">
+      <div class="cover-subtitle">Wedding Invitation</div>
+      <div class="cover-logo">L&M</div>
+      <div class="cover-title">Trân trọng kính mời</div>
+      <div style="margin-bottom: 12px; font-size: 14px;">
+        <span id="cover-guest-name">Quý khách</span>
+      </div>
+      <div class="cover-names">Lan &amp; Minh</div>
+      <div class="cover-date">20 • 12 • 2025 · TP.HCM</div>
+
+      <div class="cover-cta">
+        <span class="cover-cta-icon">✦</span>
+        <span>Mở thiệp</span>
+      </div>
+      <div class="cover-hint">(Chạm vào để mở thiệp)</div>
+    </div>
+
+    <!-- Thiệp nội dung chính -->
+    <div class="card card-content">
+      <div class="card-header">
+        <div class="photo-frame">
+          <!-- THAY ảnh này bằng ảnh của hai bạn: ví dụ src="images/couple.jpg" -->
+          <img src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=800"
+               alt="Ảnh cưới của chúng mình" />
+          <div class="photo-overlay"></div>
+          <div class="photo-label">Lan & Minh · 20.12.2025</div>
+        </div>
+      </div>
+
+      <div class="card-subtitle">Trân trọng kính mời</div>
+      <div class="card-title">
+        <span id="guest-name">Quý khách</span>
+      </div>
+      <div class="divider"></div>
+
+      <p class="card-line">Đến chung vui trong buổi lễ thành hôn của chúng tôi</p>
+
+      <p class="names-line">
+        Lan<span class="ampersand">&</span>Minh
+      </p>
+
+      <div class="info-block">
+        <div class="info-label">Thời gian</div>
+        <p class="card-line">
+          <span class="info-highlight">17:00 · Thứ Bảy, ngày 20 tháng 12 năm 2025</span>
+        </p>
+      </div>
+
+      <div class="info-block">
+        <div class="info-label">Địa điểm</div>
+        <p class="card-line info-highlight">Nhà hàng Hoa Sen</p>
+        <p class="card-line location">123 Đường ABC, Quận 1, TP. Hồ Chí Minh</p>
+      </div>
+
+      <p class="note">
+        Sự hiện diện của
+        <span id="guest-name-2">Quý khách</span>
+        là niềm vinh hạnh và hạnh phúc cho gia đình chúng tôi.
+        Rất mong được đón tiếp!
+      </p>
+
+      <section class="guestbook">
+        <h3 class="guestbook-title">Lời nhắn &amp; xác nhận tham dự</h3>
+        <p class="guestbook-desc">
+          Nếu được, bạn để lại giúp tụi mình xác nhận tham dự và vài lời chúc để tụi mình lưu lại làm kỷ niệm nhé 💌
+        </p>
+
+        <!-- Form Netlify -->
+        <form
+          name="guestbook"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          netlify
+          action="/thanks.html"
+          class="guestbook-form"
+        >
+          <!-- Bắt buộc cho Netlify Forms -->
+          <input type="hidden" name="form-name" value="guestbook" />
+
+          <!-- Honeypot chống bot -->
+          <p class="guestbook-hidden">
+            <label>Đừng điền vào ô này nếu bạn là người thật:
+              <input name="bot-field" />
+            </label>
+          </p>
+
+          <div class="guestbook-field">
+            <label class="guestbook-label" for="guestbook-name">Tên của bạn</label>
+            <input
+              type="text"
+              id="guestbook-name"
+              name="name"
+              class="guestbook-input"
+              placeholder="VD: Anh Nam, Gia đình chị Hoa..."
+              required
+            />
+          </div>
+
+          <div class="guestbook-field">
+            <label class="guestbook-label" for="guestbook-attend">Bạn có tham gia không?</label>
+            <select
+              id="guestbook-attend"
+              name="attending"
+              class="guestbook-input"
+              required
+            >
+              <option value="">-- Chọn giúp tụi mình --</option>
+              <option value="yes">Có, mình sẽ đến</option>
+              <option value="no">Xin phép không tham gia</option>
+              <option value="maybe">Chưa chắc / Để mình báo sau</option>
+            </select>
+          </div>
+
+          <div class="guestbook-field">
+            <label class="guestbook-label" for="guestbook-message">Lời chúc / lời nhắn</label>
+            <textarea
+              id="guestbook-message"
+              name="message"
+              class="guestbook-textarea"
+              placeholder="Lời chúc, kỷ niệm hoặc điều gì bạn muốn nhắn với tụi mình..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="guestbook-submit">
+            Gửi cho tụi mình
+          </button>
+
+          <div class="guestbook-small">
+            Những lời nhắn của bạn sẽ được tụi mình lưu lại trên Netlify ❤️
+          </div>
+        </form>
+      </section>
+      <div class="footer-line">With love · Lan &amp; Minh</div>
+    </div>
+  </div>
+
+  <script>
+    // Lấy param từ URL, ví dụ ?guest=Anh%20Nam
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const value = urlParams.get(param);
+      return value;
+    }
+
+    function initGuestName() {
+      let guest = getQueryParam("guest");
+      if (guest) {
+        try {
+          guest = decodeURIComponent(guest.replace(/\+/g, " "));
+        } catch (e) {
+          // nếu decode lỗi thì dùng nguyên chuỗi
+        }
+
+        // Đổi tên trên thiệp
+        const spans = document.querySelectorAll("#guest-name, #guest-name-2, #cover-guest-name");
+        spans.forEach(el => el.textContent = guest);
+
+        // Auto điền tên vào form RSVP
+        const guestbookNameInput = document.getElementById("guestbook-name");
+        if (guestbookNameInput) {
+          guestbookNameInput.value = guest;
+        }
+      }
+    }
+
+    function initOpenAnimation() {
+      const cover = document.getElementById("cover");
+      if (!cover) return;
+
+      cover.addEventListener("click", function () {
+        document.body.classList.add("opened");
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      initGuestName();
+      initOpenAnimation();
+    });
+
+
+  </script>
+</body>
+</html>
