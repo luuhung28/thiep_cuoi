@@ -915,7 +915,7 @@ body {
 /* Vị trí chữ chú rể & cô dâu */
 .our-story-label-groom {
   top: 0px;
-  right: 5%;
+  right: 3%;
   text-align: left;
 }
 
@@ -1196,7 +1196,16 @@ body {
   }
 
   .our-story-label-groom {
-    right: -5%;
+    right: -2%;
+  }
+
+
+  .our-story-label {
+    font-size: 20px;
+
+  } 
+  .our-story-label span {
+    font-size: 26px;
   }
 }
 
