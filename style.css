@@ -46,7 +46,7 @@ body {
 /* Card tổng chứa phong bì + nội dung */
 
 .invite-card {
-  overflow: hidden;
+  overflow-x: hidden;
   overflow-y: scroll;
   width: min(420px, 100%);
   min-height: 90vh;
@@ -74,12 +74,12 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   pointer-events: none; /* không chặn click vào phong bì */
-  z-index: 0; /* nằm dưới chữ, trên nền giấy */
+  z-index: 20; /* nằm dưới chữ, trên nền giấy */
 }
 
 /* Hoa bên trái */
 .card-flower-left {
-  top: 40px;
+  top: 25px;
   left: -15px;
   width: 130px; /* kích thước hoa */
   height: 230px;
@@ -88,7 +88,7 @@ body {
 
 /* Hoa bên phải */
 .card-flower-right {
-  top: 25px;
+  top: 20px;
   right: -23px;
   width: 130px; /* kích thước hoa */
   height: 130px;
@@ -100,7 +100,7 @@ body {
 }
 
 .card-title {
-  margin: 0 0 110px;
+  margin: 0 0 140px;
   font-family: "Great Vibes", cursive;
   font-size: 40px;
   text-align: center;
@@ -152,7 +152,8 @@ body {
   position: relative;
   z-index: 1;
   margin: 0;
-  font-family: "Great Vibes", cursive; /* hoặc Playfair Display nếu bạn thích */
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;  /* Sans-serif, không nét thanh đậm */
   font-size: 22px;
   color: var(--red-main); /* tông xanh hơi nâu như hình mẫu */
   text-align: center;
@@ -340,8 +341,8 @@ body {
   bottom: 18px;
   /* Khi ĐÓNG: nằm khá thấp bên trong phong bì */
   transform: translateX(-50%) translateY(15px);
-  width: 300px;
-  height: 190px;
+  width: 320px;
+  height: 185px;
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 12px 26px rgba(0, 0, 0, 0.35);
@@ -455,8 +456,6 @@ body {
 }
 /* ===== PHẦN NỘI DUNG PHÍA DƯỚI (SCROLL) ===== */
 
-
-
 /* Ảnh dummy phía dưới */
 .dummy-photo {
   margin: 20px 0;
@@ -470,42 +469,41 @@ body {
 /* Mobile */
 
 @media (max-width: 480px) {
-
   .card-title {
-    font-size: 30px;
-    margin-bottom: 85px;
+    font-size: 34px;
+    margin-bottom: 140px;
   }
 
   .letter {
-    width: 260px;
-    height: 165px;
+    width: 310px;
+    height: 190px;
   }
 
   .letter-label {
-    font-size: 11px;
+    font-size: 14px;
     letter-spacing: 2px;
   }
 
   .letter-names {
-    font-size: 24px;        /* giảm từ 28px */
+    font-size: 24px; /* giảm từ 28px */
     margin-bottom: 4px;
   }
 
   .letter-date {
-    font-size: 13px;        /* giảm từ 16px */
+    font-size: 14px; /* giảm từ 16px */
     letter-spacing: 0.18em;
   }
 
   .letter-invite {
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .letter-guest {
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .letter-guest-highlight {
-    font-size: 18px;        /* giảm từ 22px */
+    font-size: 18px; /* giảm từ 22px */
   }
 
   .photo-frame {
@@ -513,23 +511,22 @@ body {
   }
 
   .photo-frame-img {
-    max-height: 200px;     /* giảm thêm cho vừa màn nhỏ */
+    max-height: 200px; /* giảm thêm cho vừa màn nhỏ */
   }
 
   /* Hoa trang trí thu nhỏ */
-  .card-flower {
-    width: 90px;
-    height: 120px;
-  }
-
   .card-flower-left {
     top: 35px;
     left: -10px;
+    width: 200px;
+    height: 200px;
   }
 
   .card-flower-right {
     top: 20px;
     right: -14px;
+    width: 130px;
+    height: 130px;
   }
 }
 @keyframes envelopeFloat {
@@ -584,19 +581,18 @@ body {
 
 /* Firefox */
 
-
 .invite-card::-webkit-scrollbar {
-  width: 5px;                        /* rộng hơn chút cho dễ kéo */
+  width: 5px; /* rộng hơn chút cho dễ kéo */
 }
 
 /* Track (nền phía sau thanh đỏ) */
 .invite-card::-webkit-scrollbar-track {
-  background: transparent;           /* sạch, không viền */
+  background: transparent; /* sạch, không viền */
 }
 
 /* Handle – thanh đỏ, bo tròn hai đầu */
 .invite-card::-webkit-scrollbar-thumb {
-  background: var(--red-main);       /* đỏ chính */
+  background: var(--red-main); /* đỏ chính */
   border-radius: 999px;
 }
 
@@ -612,8 +608,6 @@ body {
   display: none;
 }
 
-
-
 /* Nút đĩa nhạc */
 .music-toggle {
   position: absolute;
@@ -625,13 +619,13 @@ body {
   border: none;
   padding: 0;
   margin: 0;
-  background: #000;             /* fallback nếu không dùng img */
+  background: #000; /* fallback nếu không dùng img */
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
-  z-index: 20;
+  z-index: 100;
 }
 
 .music-toggle .music-icon {
@@ -647,8 +641,8 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 1px;                 /* MỎNG 1px */
-  height: 100%;                /* dài ~70% đường kính */
+  width: 1px; /* MỎNG 1px */
+  height: 100%; /* dài ~70% đường kính */
   background: rgba(255, 255, 255, 0.95);
   border-radius: 999px;
   transform: translate(-50%, -50%) rotate(45deg);
@@ -663,9 +657,8 @@ body {
 }
 
 .music-toggle.playing::after {
-  opacity: 0;                 /* ẩn đường kẻ đi */
+  opacity: 0; /* ẩn đường kẻ đi */
 }
-
 
 @keyframes discSpin {
   from {
@@ -692,8 +685,6 @@ body {
   }
 }
 
-
-
 .guest-section {
   text-align: center;
   margin: 30px 0 20px;
@@ -711,7 +702,6 @@ body {
 
 /* Khung mờ chứa tên khách */
 .guest-name-wrapper {
-
   padding: 10px 0;
 }
 
@@ -722,4 +712,580 @@ body {
   font-size: 36px;
   color: #a1876a; /* vàng nâu sang trọng */
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+
+.main-invite {
+  text-align: center;
+  padding: 10px 24px 32px;
+  color: var(--text-main);
+}
+
+/* Hai dòng "KÍNH MỜI..." */
+.main-intro-line {
+  margin: 0;
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;     /* sans, không nét thanh – nét đậm */
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7b6a3e;               /* vàng nâu nhẹ giống hình */
+}
+
+.main-intro-line + .main-intro-line {
+  margin-top: 4px;
+}
+
+/* Tên cô dâu chú rể – lớn, chia 3 dòng HẢI ĐĂNG / & / YẾN NHI */
+.main-couple {
+  margin-top: 18px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.main-name {
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;    /* vẫn giữ sans cho đúng ý bạn */
+  font-size: 26px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.main-amp {
+  font-family: "Allura", cursive; /* chữ & mềm hơn 1 chút */
+  font-size: 26px;
+  line-height: 1;
+}
+
+/* Dòng giờ / thứ */
+.main-time {
+  margin: 0;
+  margin-top: 8px;
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.main-location-label {
+  margin: 10px 0 2px;
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7b6a3e; /* vàng nâu nhẹ, cùng tông phần trên */
+}
+
+.main-location {
+  margin: 0;
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 13px;
+  color: var(--text-main);
+}
+
+/* Nếu dùng thêm ngày / địa điểm */
+.main-date,
+.main-location {
+  margin: 6px 0 0;
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 13px;
+}
+
+
+.love-section {
+  padding: 0 0 32px;
+}
+
+/* Khối ảnh & caption đen dưới ảnh */
+.love-photo {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 0; /* nếu muốn bo nhẹ: 8px */
+}
+
+.love-photo-img {
+  display: block;
+  width: 100%;
+  max-height: 260px;        /* giống frame trên, chỉnh nếu muốn cao hơn */
+  object-fit: cover;
+}
+
+/* Dải đen mờ + chữ trắng như hình */
+.love-photo-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 6px 10px 8px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* Đoạn text cảm ơn phía dưới */
+.love-message {
+  text-align: center;
+  padding: 18px 24px 0;
+}
+
+.love-message p {
+  margin: 2px 0;
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+
+
+/* ===== OUR STORY SECTION ===== */
+
+.our-story-section {
+  padding: 28px 18px 40px;
+  position: relative;
+}
+
+/* Collage chứa 2 khung ảnh xoay chéo */
+.our-story-collage {
+  position: relative;
+  min-height: 280px;
+}
+
+/* Khung polaroid trắng */
+.our-story-photo-frame {
+  position: absolute;
+  width: 50%;
+  max-width: 230px;
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  transform-origin: center center; /* thêm dòng này để xoay quanh tâm */
+}
+
+.our-story-photo-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/* Vị trí & xoay ảnh chú rể / cô dâu */
+.our-story-photo-groom {
+  top: 0;
+  left: 4%;
+  animation: groomRock 1s ease-in-out infinite alternate;
+}
+
+.our-story-photo-bride {
+  top: 130px;
+  right: 4%;
+  animation: brideRock 1s ease-in-out infinite alternate;
+}
+
+
+/* Chữ chú rể / cô dâu */
+.our-story-label {
+  position: absolute;
+  margin: 0;
+  font-family: "Allura", cursive;
+  font-size: 24px;
+  line-height: 1.4;
+  color: var(--red-main); /* xanh lá nhẹ giống thiệp */
+}
+
+.our-story-label span {
+  font-size: 30px;
+}
+
+/* Vị trí chữ chú rể & cô dâu */
+.our-story-label-groom {
+  top: 0px;
+  right: 5%;
+  text-align: left;
+}
+
+.our-story-label-bride {
+  top: 300px;
+  left: 7%;
+  text-align: left;
+}
+
+/* Chữ Our story phía dưới */
+.our-story-title {
+  margin: 142px 0 0;
+  text-align: center;
+  font-family: "Allura", cursive;
+  font-size: 60px;
+  color: var(--red-main);
+}
+
+/* Mobile tweak nếu màn nhỏ hơn 360px */
+@media (max-width: 360px) {
+  .our-story-photo-frame {
+    width: 50%;
+  }
+  .our-story-section {
+    padding-inline: 12px;
+  }
+}
+
+
+
+
+/* Hoa 2 bên trong Our story, dùng lại file flower-left.png cho đồng bộ */
+.our-story-flower {
+  position: absolute;
+  width: 100px;
+  height: 190px;
+  background-image: url("flower-left.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 0; /* dưới khung ảnh */
+}
+
+/* Hoa bên trái */
+.our-story-flower-left {
+  left: -38px;
+  top: -64px;
+}
+
+/* Hoa bên phải – lật gương */
+.our-story-flower-right {
+  right: -20px;
+  bottom: -200px;
+  z-index: 1;
+  transform: rotateY(360deg);
+}
+
+/* Chỉ còn 2 mốc: from / to → không còn bị “giật” */
+/* Chú rể: trái ↔ phải */
+@keyframes groomRock {
+  from { transform: rotate(-2deg); }  /* nghiêng trái */
+  to   { transform: rotate(2deg); }   /* nghiêng phải */
+}
+
+/* Cô dâu: phải ↔ trái (ngược lại cho vui mắt) */
+@keyframes brideRock {
+  from { transform: rotate(2deg); }   /* nghiêng phải */
+  to   { transform: rotate(-2deg); }  /* nghiêng trái */
+}
+/* Nếu màn nhỏ quá thì thu bớt hoa cho đỡ chật */
+@media (max-width: 360px) {
+  .our-story-flower {
+    width: 70px;
+    height: 150px;
+  }
+}
+
+.our-story-text {
+  margin-top: 10px;
+  padding: 0 24px 32px;
+  text-align: center;
+}
+
+.our-story-text p {
+  margin: 6px 0;
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-main);
+}
+
+
+/* ===== WEDDING CALENDAR ===== */
+
+.wedding-calendar {
+  margin-top: 24px;
+  padding-bottom: 32px;
+}
+
+.wedding-calendar-photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0; /* nếu muốn bo chút: 12px */
+}
+
+.wedding-calendar-img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Lớp phủ để đặt tháng + lịch lên ảnh */
+.wedding-calendar-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;  /* nội dung bám phía trên */
+  padding: 24px 30px 32px;
+  background: linear-gradient(
+    to bottom,                   /* ⬅️ đen từ trên xuống */
+    rgba(0, 0, 0, 0.55) 0%,      /* trên đậm hơn */
+    rgba(0, 0, 0, 0.25) 40%,
+    transparent 80%              /* dưới trong dần */
+  );
+}
+
+/* Chữ Tháng 12 nằm ở góc phải dưới, style script */
+.calendar-month {
+  align-self: flex-end;
+  margin: 0 4px 18px 0;
+  font-family: "Allura", cursive;
+  font-size: 32px;
+  color: #ffffff;
+}
+
+/* Lưới lịch 7 cột */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 30px;
+  column-gap: 4px;
+  padding: 0 8px;
+}
+
+.calendar-day {
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 12px;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* Ngày cưới – có trái tim vân tay đỏ phía dưới số */
+.calendar-day-heart {
+  position: relative;
+  font-weight: 600;
+  z-index: 1;
+}
+
+/* Trái tim vân tay */
+.calendar-day-heart::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  width: 35px;
+  height: 35px;
+  transform: translate(-50%, -45%);
+  background-image: url("fingerprint-heart.png"); /* ảnh 2 dấu vân tay tạo thành trái tim */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1;
+}
+
+/* Để số nổi trên trái tim */
+.calendar-day-heart {
+  color: #ffffff;
+}
+
+/* Mobile nhẹ hơn một chút */
+@media (max-width: 480px) {
+  .calendar-month {
+    font-size: 28px;
+  }
+  .calendar-grid {
+    font-size: 14px;
+    row-gap: 30px;
+    column-gap: 4px;
+  }
+  .calendar-day {
+    font-size: 11px;
+  }
+}
+
+
+
+/* ===== ALBUM OF LOVE ===== */
+
+.album-section {
+  padding: 24px 18px 0;
+}
+
+/* Heading ALBUM of LOVE */
+.album-heading {
+  margin-bottom: 14px;
+}
+
+.album-title-line {
+  gap: 8px;
+}
+
+.album-word-main {
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 40px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red-main); 
+}
+
+.album-word-of {
+  padding-left: 40%;
+  font-family: "Allura", cursive;
+  font-size: 35px;
+  margin-right: 20px;
+  color: var(--red-main);
+  margin: 0 4px;
+}
+
+/* Grid ảnh */
+.album-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Ảnh to */
+.album-main-photo {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+}
+
+/* Hàng 2: 2 ảnh nhỏ cạnh nhau */
+.album-row {
+  display: flex;
+  gap: 10px;
+}
+
+.album-item {
+  flex: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.album-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Mobile rất nhỏ thì giảm size heading */
+@media (max-width: 360px) {
+  .album-word-main {
+    font-size: 35px;
+    letter-spacing: 0.18em;
+  }
+  .album-word-of {
+    font-size: 35px;
+  }
+}
+
+
+.guestbook {
+  margin-top: 18px;
+  border-top: 1px dashed rgba(183, 28, 28, 0.3);
+}
+
+.guestbook-title {
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 18px;
+  color: var(--red-main);
+  margin-bottom: 8px;
+}
+
+.guestbook-desc {
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.guestbook-form {
+  text-align: left;
+  font-size: 13px;
+}
+
+.guestbook-field {
+  margin-bottom: 8px;
+}
+
+.guestbook-label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 3px;
+  color: #555;
+}
+
+.guestbook-input,
+.guestbook-textarea {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  padding: 8px 10px;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.guestbook-input:focus,
+.guestbook-textarea:focus {
+  border-color: #b71c1c;
+  box-shadow: 0 0 0 1px rgba(183, 28, 28, 0.12);
+}
+
+.guestbook-textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+
+.guestbook-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: none;
+  background: #b71c1c;
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.guestbook-submit:hover {
+  background: #8b1010;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+}
+
+.guestbook-submit:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+}
+
+.guestbook-small {
+  font-size: 11px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.guestbook-hidden {
+  display: none;
 }
