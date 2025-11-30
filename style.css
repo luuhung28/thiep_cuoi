@@ -427,9 +427,9 @@ body {
   color: #f9f5ef;
 }
 .letter-guest-block {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 5px; */
 }
 
 /* Dòng "Trân trọng mời..." – màu vàng kem */
@@ -494,6 +494,7 @@ body {
   .letter-date {
     font-size: 14px; /* giảm từ 16px */
     letter-spacing: 0.18em;
+
   }
 
   .letter-invite {
@@ -980,6 +981,13 @@ body {
   transform: translateX(-50%) translateY(-95px); /* vị trí khi mở */
   z-index: 4; /* cùng z-index với pocket/side nên vẫn nằm "trong" phong bì */
 }
+
+.card-flower-left {
+    top: 30px;
+    left: -12px;
+    width: 100px;
+    height: 180px;
+}
 }
 
 
@@ -1155,7 +1163,7 @@ body {
 /* ===== ALBUM OF LOVE ===== */
 
 .album-section {
-  padding: 24px 18px 0;
+  padding: 24px 0;
 }
 
 /* Heading ALBUM of LOVE */
@@ -1185,27 +1193,29 @@ body {
   margin: 0 4px;
 }
 
-/* Grid ảnh 2 cột */
-
 .album-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 cột đều nhau */
+  grid-template-columns: repeat(2, 1fr); /* 2 cột */
   gap: 10px;
 }
 
-/* Mỗi item là 1 “thẻ ảnh” */
+/* Thẻ bao ảnh */
 .album-item {
-  border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
 }
 
-/* Ảnh fill theo chiều ngang, cao thấp tự nhiên */
+/* Ảnh bên trong fill theo chiều ngang */
 .album-img {
   display: block;
   width: 100%;
-  height: auto;          /* giữ tỉ lệ, không ép bằng nhau */
-  object-fit: contain;     /* nếu muốn luôn phủ đầy khung */
+  height: auto;
+  object-fit: cover;    /* hoặc contain nếu bạn không muốn crop */
+}
+
+/* Ảnh lớn chiếm full 2 cột */
+.album-large {
+  grid-column: 1 / -1; /* span 2 cột */
 }
 
 /* Mobile rất nhỏ thì giảm size heading */
@@ -1335,14 +1345,15 @@ body {
 }
 
 .reveal-section {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  opacity: 1;          /* luôn hiển thị */
+  transform: none;     /* không trượt nữa */
+  transition: none;    /* không animate */
 }
+
 
 .reveal-section.revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 
@@ -1369,8 +1380,8 @@ body {
   width: 100%;
   height: auto;
   object-fit: contain;
-  filter: brightness(1.35) contrast(0.9) saturate(0.9);
-  opacity: 0.9;    
+  filter: brightness(0.8) contrast(0.8) saturate(0.9);
+  opacity: 1;    
 }
 
 /* Lớp phủ trắng mờ từ trên xuống giống hình */
@@ -1399,7 +1410,7 @@ body {
     "Segoe UI", sans-serif;
   font-size: 13px;
   line-height: 1.6;
-  color: var(--red-dark);
+  color: white;
 }
 
 /* Chữ Thankyou ! giữa ảnh */
@@ -1412,7 +1423,7 @@ body {
   font-size: 34px;
   font-style: italic;
   letter-spacing: 0.08em;
-  color: var(--red-dark);
+  color: white;
 }
 
 

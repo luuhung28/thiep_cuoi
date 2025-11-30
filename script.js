@@ -64,7 +64,7 @@ function openEnvelope() {
     inviteBody.style.animation = "slideFadeIn 0.7s ease forwards"; // chạy animation
   }
 
-  setupScrollReveal();
+  // setupScrollReveal();
   }, 450); // match với transition: 1s của .front.flap
 }
 
@@ -159,7 +159,7 @@ function applyUrlParams() {
     if (isGroomSide !== null) {
       updateCoupleOrder(isGroomSide);
       updateEventInfo(isGroomSide);   // đổi giờ + địa điểm
-      updateLetterDate(isGroomSide);    // 🔹 đổi ngày trên lá thư
+      // updateLetterDate(isGroomSide);   
       updateCalendarDay(isGroomSide);
     }
   }
@@ -238,14 +238,14 @@ function updateEventInfo(isGroomSide) {
   mainLocationEl.textContent = eventInfo.location;
 }
 
-function updateLetterDate(isGroomSide) {
-  const letterDateEl = document.getElementById("letterDate");
-  if (!letterDateEl) return;
+// function updateLetterDate(isGroomSide) {
+//   const letterDateEl = document.getElementById("letterDate");
+//   if (!letterDateEl) return;
 
-  letterDateEl.textContent = isGroomSide
-    ? GROOM_LETTER_DATE
-    : BRIDE_LETTER_DATE;
-}
+//   letterDateEl.textContent = isGroomSide
+//     ? GROOM_LETTER_DATE
+//     : BRIDE_LETTER_DATE;
+// }
 
 function updateCalendarDay(isGroomSide) {
   const days = document.querySelectorAll(".calendar-day");
