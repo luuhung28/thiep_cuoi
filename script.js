@@ -47,7 +47,10 @@ function openEnvelope() {
   ) {
     return;
   }
-  musicToggle.click(); // tự động bật nhạc khi mở thiệp
+  if(isPlaying === false){
+    musicToggle.click(); // tự động bật nhạc khi mở thiệp
+  }
+
   applyUrlParams(); // áp dụng tham số URL khi mở thiệp
   // Bước 1: Đánh dấu là ĐANG MỞ → chỉ có nắp xoay
   envelope.classList.add("opening");
