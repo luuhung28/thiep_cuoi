@@ -5,8 +5,14 @@
     <title>Thiệp cưới đỏ – trắng sang trọng</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:title" content="Thiệp cưới Hùng & Vân Anh" />
-    <meta property="og:description" content="Trân trọng kính mời bạn đến dự lễ cưới của chúng mình 🥰" />
-    <meta property="og:image" content="https://hungvanhweeding.netlify.app/anh_gan_thu1.jpg" />
+    <meta
+      property="og:description"
+      content="Trân trọng kính mời bạn đến dự lễ cưới của chúng mình 🥰"
+    />
+    <meta
+      property="og:image"
+      content="https://hungvanhweeding.netlify.app/anh_gan_thu1.jpg"
+    />
     <meta property="og:url" content="https://hungvanhweeding.netlify.app" />
     <meta property="og:type" content="website" />
     <meta property="og:image:width" content="1200" />
@@ -24,14 +30,15 @@
   <body>
     <div class="page">
       <div class="invite-card">
-        <button
-          class="music-toggle"
-          id="musicToggle"
-          aria-label="Bật / tắt nhạc"
-        >
-          <!-- nếu bạn có file icon đĩa riêng thì dùng img; không có thì có thể bỏ img -->
-          <img src="vinyl-record.png" alt="Music disc" class="music-icon" />
-        </button>
+        <div class="music-toggle-wrapper">
+          <button
+            class="music-toggle"
+            id="musicToggle"
+            aria-label="Bật / tắt nhạc"
+          >
+            <img src="vinyl-record.png" alt="Music disc" class="music-icon" />
+          </button>
+        </div>
         <div class="card-flower card-flower-left"></div>
         <div class="card-flower card-flower-right"></div>
         <h2 class="card-title">Save our date</h2>
@@ -50,12 +57,19 @@
 
               <div class="letter-content">
                 <p class="letter-label">Thiệp mời cưới</p>
-                <h1 class="letter-names">Mạnh Hùng &amp; Vân Anh</h1>
-                <p class="letter-date">30.12.2026</p>
+                <h1 class="letter-names">
+                  <span id="letterGroomName">Mạnh Hùng</span>
+                  &amp;
+                  <span id="letterBrideName">Vân Anh</span>
+                </h1>
+
+                <p class="letter-date" id="letterDate">30.12.2026</p>
                 <div class="letter-guest-block">
                   <p class="letter-invite">Kính mời:</p>
                   <p class="letter-guest">
-                    <span class="letter-guest-highlight">Bạn Hùng</span>
+                    <span class="letter-guest-highlight" id="letterGuestName"
+                      >Bạn Hùng</span
+                    >
                   </p>
                 </div>
               </div>
@@ -85,41 +99,43 @@
 
         <div class="invite-body">
           <!-- Ảnh cưới dưới thiệp -->
-          <div class="photo-frame">
+          <div class="photo-frame reveal-section">
             <img src="anh_gan_thu.jpg" alt="Ảnh cưới" class="photo-frame-img" />
           </div>
 
           <!-- ✨ Block khách mời mới -->
-          <div class="guest-section">
+          <div class="guest-section reveal-section">
             <p class="guest-title">TRÂN TRỌNG KÍNH MỜI</p>
+            <p class="guest-side" id="guestSide"></p>
             <div class="guest-name-wrapper">
-              <p class="guest-name">Lưu Mạnh Hùng</p>
+              <p class="guest-name" id="guestName">Lưu Mạnh Hùng</p>
             </div>
           </div>
 
           <!-- ✨ Phần nội dung thiệp -->
-          <div class="main-invite">
-            <p class="main-intro-line">KÍNH MỜI THAM DỰ TIỆC CHUNG VUI</p>
-            <p class="main-intro-line">CỦA GIA ĐÌNH CHÚNG TÔI</p>
+          <div class="main-invite reveal-section">
+            <p class="main-intro-line">THAM DỰ BỮA TIỆC CHUNG VUI</p>
+            <p class="main-intro-line" id="sideLine">CÙNG GIA ĐÌNH CHÚNG TÔI</p>
 
             <div class="main-couple">
-              <span class="main-name">Mạnh Hùng</span>
+              <span class="main-name" id="mainGroomName">Mạnh Hùng</span>
               <span class="main-amp">&amp;</span>
-              <span class="main-name">Vân Anh</span>
+              <span class="main-name" id="mainBrideName">Vân Anh</span>
             </div>
+            <p class="main-time" id="mainTime">09:00, THỨ TƯ</p>
 
-            <p class="main-time">09:00, THỨ TƯ</p>
-
-            <p class="main-location-label">HÔN LỄ ĐƯỢC CỬ HÀNH TẠI</p>
-            <p class="main-location">
+            <p class="main-location-label" id="mainLocationLabel">
+              HÔN LỄ ĐƯỢC CỬ HÀNH TẠI
+            </p>
+            <p class="main-location" id="mainLocation">
               Nhà hàng ABC, 123 Đường XYZ, Quận 1, TP. Hồ Chí Minh
             </p>
           </div>
 
-          <div class="love-section">
+          <div class="love-section reveal-section">
             <div class="love-photo">
               <img
-                src="anh_gan_thu.jpg"
+                src="anh_gan_thu_2.jpg"
                 alt="Wedding Love"
                 class="love-photo-img"
               />
@@ -136,7 +152,7 @@
             </div>
           </div>
 
-          <div class="our-story-section">
+          <div class="our-story-section reveal-section">
             <div class="our-story-collage">
               <!-- 🌸 Hoa 2 bên -->
               <div class="our-story-flower our-story-flower-left"></div>
@@ -174,24 +190,47 @@
 
             <p class="our-story-title">Our story</p>
             <div class="our-story-text">
-              <p>
-                Mọi thứ bắt đầu từ một lời chào giản đơn, nhưng đã thay đổi cả
-                cuộc đời chúng tôi.
+              <p style="text-align: center">
+                Hành trình yêu thương của chúng mình
               </p>
               <p>
-                Qua những khoảnh khắc cười đùa, những buổi hẹn hò ấm áp bên
-                nhau, chúng tôi đã cùng nhau lớn lên, học hỏi và yêu thương.
+                Chúng mình bắt đầu từ một tình bạn rất đỗi bình thường - hai đứa
+                học thêm Toán cấp 2 cùng nhau, vô tư và hồn nhiên như bao bạn bè
+                khác.
               </p>
               <p>
-                Hôm nay, chúng tôi hân hoan chia sẻ hành trình này với những
-                người thân yêu, và mong được đón nhận lời chúc phúc của các bạn
-                cho tình yêu của chúng tôi.
+                Đến khi lên cấp 3, chỉ từ một tin nhắn nhỏ: “Sao cậu thức muộn
+                thế?”… mà mọi thứ dần thay đổi. Tình bạn âm thầm lớn lên, dịu
+                dàng chuyển thành những rung động đầu đời, rồi thành tình yêu
+                lúc nào không hay.
+              </p>
+              <p>
+                Chúng mình đã cùng nhau ôn thi Đại học, cùng nỗ lực để bước vào
+                ngôi trường mơ ước riêng của mỗi người. Bốn năm thanh xuân trôi
+                qua với biết bao kỷ niệm đẹp của thời sinh viên: vừa học, vừa
+                yêu, vừa cùng nhau trưởng thành.
+              </p>
+              <p>
+                Rồi chúng mình cùng tốt nghiệp, bước vào hành trình mới đầy thử
+                thách - tìm kiếm công việc mơ ước, những tháng ngày thực tập,
+                thử việc, loay hoay với những chông chênh nơi văn phòng, rồi
+                mạnh mẽ hơn từng chút một. Nhờ có nhau mà cả hai kiên trì hơn,
+                vững vàng hơn trên con đường sự nghiệp của riêng mình.
+              </p>
+              <p>
+                Và hôm nay, sau 10 năm bên nhau, chúng mình chọn bước tiếp hành
+                trình bằng một lời hứa trọn đời.
+              </p>
+              <p>
+                Với tất cả yêu thương, chúng mình trân trọng kính mời bạn đến
+                chung vui trong ngày trọng đại - ngày mà hai đứa chính thức trở
+                thành một gia đình.
               </p>
             </div>
           </div>
 
           <!-- Lịch cưới -->
-          <div class="wedding-calendar">
+          <div class="wedding-calendar reveal-section">
             <div class="wedding-calendar-photo">
               <!-- Ảnh nền lịch -->
               <img
@@ -249,7 +288,7 @@
           </div>
 
           <!-- ALBUM OF LOVE -->
-          <div class="album-section">
+          <div class="album-section reveal-section">
             <!-- Tiêu đề -->
             <div class="album-heading">
               <div class="album-title-line">
@@ -294,20 +333,17 @@
                 </div>
               </div>
 
-              <!-- Nếu cần ảnh nữa thì thêm các .album-row bên dưới -->
-              <!--
-    <div class="album-row">
-      <div class="album-item">
-        <img src="album4.jpg" class="album-img" alt="Album photo 4" />
-      </div>
-      <div class="album-item">
-        <img src="album5.jpg" class="album-img" alt="Album photo 5" />
-      </div>
-    </div>
-    -->
+              <div class="album-row">
+                <div class="album-item">
+                  <img src="calendar_background.jpg" class="album-img" alt="Album photo 4" />
+                </div>
+                <div class="album-item">
+                  <img src="calendar_background.jpg" class="album-img" alt="Album photo 5" />
+                </div>
+              </div>
             </div>
 
-            <section class="guestbook">
+            <section class="guestbook reveal-section">
               <h3 class="guestbook-title">Lời nhắn &amp; xác nhận tham dự</h3>
               <p class="guestbook-desc">
                 Nếu được, bạn để lại giúp tụi mình xác nhận tham dự và vài lời
@@ -391,8 +427,40 @@
                 </div>
               </form>
             </section>
-            <div class="footer-line">With love · Hùng &amp; Vân Anh</div>
           </div>
+
+          <!-- THANK YOU SECTION -->
+          <div class="thankyou-section reveal-section">
+            <div class="thankyou-block">
+              <div class="thankyou-photo">
+                <img
+                  src="anh_gan_thu1.jpg"
+                  alt="Ảnh cưới"
+                  class="thankyou-img"
+                />
+
+                <!-- Ô chữ trắng phía trên -->
+                <div class="thankyou-message">
+                  Cảm ơn bạn đã dành tình cảm cho chúng mình! Sự hiện diện của
+                  bạn chính là món quà ý nghĩa nhất, và chúng mình vô cùng trân
+                  quý khi được cùng bạn chia sẻ những khoảnh khắc hạnh phúc
+                  trong ngày trọng đại này.
+                </div>
+
+                <!-- Chữ Thankyou trên ảnh -->
+                <div class="thankyou-script">Thankyou !</div>
+
+                <!-- Nút menu 3 gạch -->
+                <button class="thankyou-menu-btn" type="button">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-line">With love · Hùng &amp; Vân Anh</div>
         </div>
       </div>
     </div>
